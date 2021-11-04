@@ -1,5 +1,6 @@
 package ru.samsung.itschool.mdev.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -44,10 +45,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         counter++;
         result.setText(Integer.toString(counter));
 
+       // Bundle bundle = new Bundle();
+      //  bundle.putInt();
+
         //Toast.makeText(this,"Message!",Toast.LENGTH_LONG).show();
         //root.setBackgroundColor(Color.RED);
         //Snackbar.make(findViewById(R.id.mainRoot),"Message2",Snackbar.LENGTH_LONG).show();
     }
 
 
+
+    // запоминает состояние
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("c",counter);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        counter = savedInstanceState.getInt("c");
+        result.setText(Integer.toString(counter));
+    }
 }
